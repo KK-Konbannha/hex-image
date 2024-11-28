@@ -31,7 +31,6 @@ main {
   padding: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
 }
 
 #hex-image {
@@ -42,7 +41,7 @@ main {
     "... .......... ......... ......... ..." 10px
     "... checkboxes ......... select    ..." 30px
     "... .......... ......... ......... ..."
-    / 0 300px 300px 300px 0;
+    / 0 300px 300px 300px 30px;
 }
 
 #container {
@@ -55,10 +54,19 @@ main {
 
 #checkboxes {
   grid-area: checkboxes;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
 }
 
 #color_select {
   grid-area: select;
+  margin-right: 20px;
 }
 
 #btn {
