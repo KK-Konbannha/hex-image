@@ -9,31 +9,64 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template:
+    "header header header" 50px
+    "...... main   ......" auto
+    / 1fr minmax(1200px, 1fr) 1fr;
 }
 
 header {
+  grid-area: header;
   background-color: #333;
   color: #fff;
-  padding: 10px 0;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 main {
+  grid-area: main;
   background-color: #f5f5f5;
-  margin: 0 auto;
-  max-width: 1200px;
   padding: 20px;
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#hex-image {
+  display: grid;
+  grid-template:
+    "... .......... ......... ......... ..."
+    "... container  container container ..." 600px
+    "... .......... ......... ......... ..." 10px
+    "... checkboxes ......... select    ..." 30px
+    "... .......... ......... ......... ..."
+    / 0 300px 300px 300px 30px;
 }
 
 #container {
+  grid-area: container;
   padding: 20px;
-  height: 600px;
-  width: 850px;
   background-color: #ef5350;
   border-radius: 10px;
   border: 1px solid #ccc;
+}
+
+#checkboxes {
+  grid-area: checkboxes;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+#color_select {
+  grid-area: select;
+  margin-right: 20px;
 }
 
 #btn {
