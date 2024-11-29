@@ -1,19 +1,22 @@
-h1 {
-  font-size: 24px;
+h1,
+body,
+button {
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  font-size: 24px;
 }
 
 body {
   background-color: #f0f0f0;
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
   display: grid;
   grid-template:
     "header header header" 50px
-    "...... main   ......" auto
-    / 1fr minmax(1200px, 1fr) 1fr;
+    "...... main   ......" minmax(400px, 640px)
+    / 1fr minmax(900px, 1200px) 1fr;
 }
 
 header {
@@ -25,23 +28,16 @@ header {
   align-items: center;
 }
 
-main {
+#hex-image {
   grid-area: main;
   background-color: #f5f5f5;
+  display: grid;
   padding: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-#hex-image {
-  display: grid;
   grid-template:
-    "... .......... ......... ......... ..."
-    "... container  container container ..." 600px
-    "... .......... ......... ......... ..." 10px
-    "... checkboxes ......... select    ..." 30px
-    "... .......... ......... ......... ..."
-    / 0 300px 300px 300px 30px;
+    "container  container container ... btn" 20fr
+    ".......... ......... ......... ... ..." 10px
+    "checkboxes ......... select    ... ..." 1fr
+    / 3fr 3fr 3fr 30px 2fr;
 }
 
 #container {
@@ -70,10 +66,10 @@ main {
 }
 
 #btn {
+  grid-area: btn;
   height: 200px;
-  width: 200px;
-  margin-top: 60px;
-  padding: 0px;
+  width: 100%;
+  margin-top: 20px;
   background: url("ImgBtn.svg") no-repeat;
   background-size: 100%;
   border: none;
