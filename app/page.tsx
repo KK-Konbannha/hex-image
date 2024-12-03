@@ -44,7 +44,7 @@ export default function Home() {
       <CheckBoxes css={checkboxesStyle} />
       <ColorSelector css={colorSelectorStyle} />
 
-      <ImgSelectBtn css={imgSelectBtnStyle} />
+      <ImgSelectBtn isDisabled={false} width={150} css={imgSelectBtnStyle} />
     </div>
   );
 }
