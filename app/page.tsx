@@ -1,6 +1,10 @@
 // Code: Home page
+"use client";
+import { useState } from "react";
+
 import { css } from "@/styled-system/css";
 
+import { ImgData } from "@/app/types";
 import Container from "@/app/components/Container";
 import CheckBoxes from "@/app/components/CheckBoxes";
 import ColorSelector from "@/app/components/ColorSelector";
@@ -33,18 +37,27 @@ const colorSelectorStyle = css.raw({
 
 const imgSelectBtnStyle = css.raw({
   gridArea: "btn",
+  width: "80%",
+  height: "80%",
 });
 
 // Define component
 export default function Home() {
+  const [image, setImage] = useState<ImgData | null>(null);
+
   return (
     <div className={css(wrapperStyle)}>
-      <Container css={containerStyle} />
+      <Container image={image} setImage={setImage} css={containerStyle} />
 
       <CheckBoxes css={checkboxesStyle} />
       <ColorSelector css={colorSelectorStyle} />
 
-      <ImgSelectBtn isDisabled={false} width={150} css={imgSelectBtnStyle} />
+      <ImgSelectBtn
+        image={image}
+        setImage={setImage}
+        isDisabled={false}
+        css={imgSelectBtnStyle}
+      />
     </div>
   );
 }

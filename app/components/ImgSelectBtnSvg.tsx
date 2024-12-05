@@ -6,14 +6,12 @@ import { css } from "@/styled-system/css";
 // Define props
 type ImgSelectBtnSvgProps = Readonly<{
   isDisabled?: boolean;
-  width: number;
   onClick: React.MouseEventHandler<SVGSVGElement>;
 }>;
 
 // Define component
 export default function ImgSelectBtnSvg({
   isDisabled,
-  width,
   onClick,
 }: ImgSelectBtnSvgProps) {
   const [isHovered, setIsHovered] = useState(false);
@@ -27,8 +25,8 @@ export default function ImgSelectBtnSvg({
       overflow="visible"
       viewBox="0 0 66 66"
       className={css({
-        width: width,
-        height: width,
+        width: "100%",
+        height: "100%",
         margin: "2",
         cursor: isDisabled ? "default" : "pointer",
         transition: ".3s",

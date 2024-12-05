@@ -3,12 +3,15 @@
 import { useRef } from "react";
 import { css } from "@/styled-system/css";
 
+import { ImgData } from "@/app/types";
+import { getImageInfo } from "@/app/utils";
 import ImgSelectBtnSvg from "@/app/components/ImgSelectBtnSvg";
 
 // Define props
 type ImgSelectBtnProps = Readonly<{
+  image: ImgData | null;
+  setImage: React.Dispatch<React.SetStateAction<ImgData | null>>;
   isDisabled?: boolean;
-  width?: number;
   css?: ReturnType<typeof css.raw>;
 }>;
 
@@ -24,8 +27,9 @@ const imgSelectBtnStyle = css.raw({
 
 // Define component
 export default function ImgSelectBtn({
+  image,
+  setImage,
   isDisabled = false,
-  width = 150,
   css: cssProp,
 }: ImgSelectBtnProps) {
   // ファイル選択ボタンの参照を作成
@@ -36,6 +40,24 @@ export default function ImgSelectBtn({
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
+  };
+
+  // inputのファイル選択時に画像情報を取得してstateにセット
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const files = Array.from(
+      event.target.files ? event.target.files : [],
+    ).filter((file) => file && file.type.startsWith("image/"));
+
+    if (files.length === 0) {
+      alert("画像ファイルを選択してください");
+      return;
+    }
+
+    const file = files[0];
+    const imgData = await getImageInfo(file);
+    setImage(imgData);
   };
 
   return (
@@ -62,15 +84,12 @@ export default function ImgSelectBtn({
           }),
         )}
       >
-        <ImgSelectBtnSvg
-          isDisabled={isDisabled}
-          width={width}
-          onClick={handleClick}
-        />
+        <ImgSelectBtnSvg isDisabled={isDisabled} onClick={handleClick} />
         <input
           type="file"
           accept="image/*"
           ref={fileInputRef}
+          onChange={handleFileChange}
           className={css({
             display: "none",
           })}
